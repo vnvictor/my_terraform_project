@@ -1,0 +1,3 @@
+.terraform/*
+./statefiles/*
+.terraform.lock.hcl
