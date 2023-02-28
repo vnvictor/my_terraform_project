@@ -6,6 +6,9 @@ output "public_subnets_id" {
   value = aws_subnet.public_subnets.*.id
 }
 
+output "private_subnets_rtb_id" {
+  value = aws_route_table.private_rtb.id
+}
 
 /*
 Output sample:

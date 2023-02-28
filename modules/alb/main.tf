@@ -22,10 +22,11 @@ resource "aws_lb_target_group" "target_group" {
 
 resource "aws_alb_listener" "http_listener" {
   load_balancer_arn = aws_alb.app_load_balancer.arn
-  port = "80"
+  port = "8080"
   protocol = "HTTP"
   default_action {
     type = "forward"
     target_group_arn = aws_lb_target_group.target_group.arn
   }
 }
+
