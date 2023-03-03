@@ -16,12 +16,12 @@ variable "security_group_ids" {
 
 variable "target_group_info" {
   type = object({
-    name = string
-    port = number
-    protocol = string
-    target_type = string
-    vpc_id = string
-    is_enable = bool
+    name              = string
+    port              = number
+    protocol          = string
+    target_type       = string
+    vpc_id            = string
+    is_enable         = bool
     health_check_path = string
   })
 }

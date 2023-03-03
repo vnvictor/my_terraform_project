@@ -1,10 +1,10 @@
 resource "aws_alb" "app_load_balancer" {
-  name = var.name
-  internal = var.is_internal
+  name               = var.name
+  internal           = var.is_internal
   load_balancer_type = var.lb_type
-  security_groups = var.security_group_ids
-  subnets = var.alb_subnets
-  
+  security_groups    = var.security_group_ids
+  subnets            = var.alb_subnets
+
 }
 
 resource "aws_lb_target_group" "target_group" {
@@ -16,16 +16,16 @@ resource "aws_lb_target_group" "target_group" {
 
   health_check {
     enabled = var.target_group_info.is_enable
-    path = var.target_group_info.health_check_path
+    path    = var.target_group_info.health_check_path
   }
 }
 
 resource "aws_alb_listener" "http_listener" {
   load_balancer_arn = aws_alb.app_load_balancer.arn
-  port = "8080"
-  protocol = "HTTP"
+  port              = "80"
+  protocol          = "HTTP"
   default_action {
-    type = "forward"
+    type             = "forward"
     target_group_arn = aws_lb_target_group.target_group.arn
   }
 }

@@ -1,4 +1,4 @@
-variable "ecs_cluster_id"{
+variable "ecs_cluster_id" {
   type = string
 }
 
@@ -11,11 +11,11 @@ variable "iam_role_arn" {
 }
 
 variable "target_value_cpu" {
-  type = number
+  type    = number
   default = 80
 }
 
 variable "target_value_memory" {
-  type = number
+  type    = number
   default = 80
 }

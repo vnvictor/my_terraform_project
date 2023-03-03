@@ -16,9 +16,9 @@ locals {
   private_subnet_a_list = ["10.0.2.0/24"] #, "10.0.3.0/24"]
   public_subnet_b_list  = ["10.0.4.0/24"]
   private_subnet_b_list = ["10.0.5.0/24"] #, "10.0.6.0/24"]
-  container_image_name  = "nginx"
-  container_image       = "382711225776.dkr.ecr.us-east-1.amazonaws.com/my_nginx:latest"
-  container_port        = 8080
+  container_image_name  = "apache"
+  container_image       = "382711225776.dkr.ecr.us-east-1.amazonaws.com/myapache:latest"
+  container_port        = 443
 }
 
 module "vpc" {
@@ -71,7 +71,7 @@ module "security_group_http" {
 
 module "security_group_http_ingress" {
   source              = "./modules/security/security_groups_rules_ingress"
-  ingress_port        = ["8080", "443"]
+  ingress_port        = ["443"]
   protocol            = "TCP"
   allowed_cidr_blocks = ["${local.igw_cidr_block}"]
   sec_group_id        = module.security_group_http.security_group_id
@@ -157,7 +157,7 @@ module "app_load_balance" {
   target_group_info = {
     health_check_path = "/"
     is_enable         = true
-    name              = "nginx"
+    name              = "apache"
     port              = local.container_port
     protocol          = "HTTP"
     target_type       = "ip"

@@ -1,3 +1,4 @@
 .terraform/*
 statefiles/*
 .terraform.lock.hcl
+empty_files/*
